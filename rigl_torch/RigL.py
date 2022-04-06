@@ -159,8 +159,8 @@ class RigLScheduler:
 
             n = self.N[l]
             s = int(self.S[l] * n)
-            perm = torch.randperm(n)
-            perm = perm[:s]
+            perm = torch.randperm(n)  # Generate random perm of indices in n
+            perm = perm[:s]  # Select s elements from n to achieve desired sparsity
             flat_mask = torch.ones(n, device=w.device)
             flat_mask[perm] = 0
             mask = torch.reshape(flat_mask, w.shape)

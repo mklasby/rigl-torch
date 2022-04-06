@@ -2,3 +2,7 @@
 *.egg-info
 *.DS_store
 *__pycache__*
+*graphs
+*.pt
+*.png
+*.ipynb

@@ -17,7 +17,7 @@ import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
-
+import pathlib
 from rigl_torch.RigL import RigLScheduler
 
 
@@ -178,7 +178,10 @@ def main():
         writer.add_scalar('accuracy', acc, epoch)
 
     if args.save_model:
-        torch.save(model.state_dict(), "/artifacts/mnist_cnn.pt")
+        save_path = pathlib.Path("artifacts/")
+        if not save_path.is_dir():
+            save_path.mkdir()
+        torch.save(model.state_dict(), save_path/"mnist_cnn.pt")
 
 
 if __name__ == '__main__':
